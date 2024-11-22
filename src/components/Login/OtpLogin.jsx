@@ -2,19 +2,17 @@ import React, { useRef, useState } from "react";
 import ContinueBtn from "../ContinueBtn";
 
 function OtpLogin() {
-
   let path = "dashboard";
 
-  const [otp, setOtp] = useState(["", "", "", ""]); // State for storing OTP digits
-  const inputs = useRef([]); // To store input refs
+  const [otp, setOtp] = useState(["", "", "", ""]);
+  const inputs = useRef([]);
 
   const handleChange = (value, index) => {
-    if (isNaN(value)) return; // Allow only numbers
+    if (isNaN(value)) return;
     const updatedOtp = [...otp];
-    updatedOtp[index] = value; // Update the current index with the new value
+    updatedOtp[index] = value;
     setOtp(updatedOtp);
 
-    // Move to the next input if not the last
     if (value && index < 3) {
       inputs.current[index + 1].focus();
     }
