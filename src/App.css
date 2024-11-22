@@ -1,38 +1,47 @@
-.App {
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+#poppinsFont {
+  font-family: "Poppins", serif;
+  font-style: normal;
+}
+#barlowFont {
+  font-family: "Barlow", sans-serif;
+  font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#beforeLi::before {
+  content: " ";
+  position: absolute;
+  width: 50px;
+  border-radius: 0px 10px 10px 0px;
+  height: 30px;
+  left: 0;
+  background-color: black;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#scrollbar::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* The scrollbar track */
+
+#scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the track */
+  border-radius: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+/* The scrollbar thumb */
+
+#scrollbar::-webkit-scrollbar-thumb {
+  background: #302A2A; /* Scrollbar color */
+  border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Hover effect on the scrollbar */
+
+#scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #302A2A; /* Darker color on hover */
 }
