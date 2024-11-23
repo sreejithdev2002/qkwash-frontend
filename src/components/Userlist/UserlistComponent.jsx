@@ -39,22 +39,24 @@ function UserlistComponent() {
         {userListData.map((data) => (
           <div className="grid grid-cols-4 mx-0 justify-start bg-[#D9D9D9] hover:bg-[#d4d3d3] rounded-2xl p-4 my-3 transition duration-300 cursor-pointer">
             <div>
-              <h1 className="text-2xl text-[#464255] font-medium">
+              <h1 className="text-2xl text-[#464255] font-medium pl-5">
                 {data.name}
               </h1>
-              <p className="font-medium text-[#A3A3A3]">#{data.id}</p>
+              <p className="font-medium text-[#A3A3A3] text-xl pl-5">
+                #{data.id}
+              </p>
             </div>
             <div>
-              <h2 className="font-medium">Mobile Number</h2>
-              <p className="font-medium">{data.mobile}</p>
+              <h2 className="font-medium text-center">Mobile Number</h2>
+              <p className="font-medium text-center">{data.mobile}</p>
             </div>
             <div>
-              <h2 className="font-medium">Total Wash</h2>
-              <p className="font-medium">{data.totalWash}</p>
+              <h2 className="font-medium text-center">Total Wash</h2>
+              <p className="font-medium text-center">{data.totalWash}</p>
             </div>
             <div>
-              <h2 className="font-medium">Total Dry</h2>
-              <p className="font-medium">{data.totalDry}</p>
+              <h2 className="font-medium text-center">Total Dry</h2>
+              <p className="font-medium text-center">{data.totalDry}</p>
             </div>
           </div>
         ))}
