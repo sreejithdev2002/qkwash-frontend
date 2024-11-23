@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   BarsIcon,
   FileIcon,
@@ -6,16 +6,22 @@ import {
   UserIcon,
   UsersIcon,
 } from "../Assets/Icons";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
-  const [active, setActive] = useState("Dashboard");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const menuItems = [
-    { name: "Dashboard", icon: <HomeIcon /> },
-    { name: "Hub List", icon: <BarsIcon /> },
-    { name: "Service Request", icon: <FileIcon /> },
-    { name: "Device Controller", icon: <UsersIcon /> },
-    { name: "User Detail", icon: <UserIcon /> },
+    { name: "Dashboard", icon: <HomeIcon />, path: "/dashboard" },
+    { name: "Hub List", icon: <BarsIcon />, path: "/hublist" },
+    { name: "Service Request", icon: <FileIcon />, path: "/service-request" },
+    {
+      name: "Device Controller",
+      icon: <UsersIcon />,
+      path: "/device-controller",
+    },
+    { name: "User Detail", icon: <UserIcon />, path: "/userlist" },
   ];
 
   return (
@@ -33,16 +39,16 @@ const Sidebar = () => {
           <li
             key={item.name}
             className="flex items-center gap-2 px-3 rounded-lg cursor-pointer relative"
-            onClick={() => setActive(item.name)}
+            onClick={() => navigate(item.path)}
           >
             <span
               className={`absolute left-0 h-full w-1 bg-[#00B074] rounded-r-md ${
-                active === item.name ? "block" : "hidden"
+                location.pathname === item.path ? "block" : "hidden"
               }`}
             ></span>
             <div
               className={`flex justify-start items-center mx-8 hover:bg-[#308FFD36] py-3 px-5 rounded-lg w-52 ${
-                active === item.name
+                location.pathname === item.path
                   ? "text-[#00B074] bg-[#308FFD36]"
                   : "text-[#464255]"
               }`}

@@ -24,7 +24,7 @@ function DashboardHubList() {
         },
     ]
   return (
-    <div className='bg-[#DCE7DDBD] rounded-2xl px-10 py-5 mt-8' id='barlowFont'>
+    <div className='bg-[#DCE7DDBD] rounded-2xl px-10 py-5 mt-2' id='barlowFont'>
       <h1 className='font-semibold text-2xl text-[#464255] pb-5'>Hub List</h1>
       <div className='h-[35vh] overflow-auto pr-5' id='scrollbar'>
         {hubData.map((data) => (
