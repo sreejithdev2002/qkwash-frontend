@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 function UserlistComponent() {
   const userListData = [
@@ -32,12 +33,18 @@ function UserlistComponent() {
     },
   ];
 
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/userlist/id")
+  }
+
   return (
     <div id="barlowFont">
       <h1 className="my-5 font-semibold text-2xl text-[#464255]">User List</h1>
       <div className="flex flex-col">
         {userListData.map((data) => (
-          <div className="grid grid-cols-4 mx-0 justify-start bg-[#D9D9D9] hover:bg-[#d4d3d3] rounded-2xl p-4 my-3 transition duration-300 cursor-pointer">
+          <div className="grid grid-cols-4 mx-0 justify-start bg-[#D9D9D9] hover:bg-[#d4d3d3] rounded-2xl p-4 my-3 transition duration-300 cursor-pointer" onClick={handleClick}>
             <div>
               <h1 className="text-2xl text-[#464255] font-medium pl-5">
                 {data.name}
