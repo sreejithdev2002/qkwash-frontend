@@ -36,8 +36,8 @@ function DashboardComponent() {
     <div>
       <h1 id="barlowFont" className="my-5 font-semibold text-2xl text-[#464255]">Dashboard</h1>
       <div className="flex">
-        {deviceData.map((data) => (
-          <div className={`flex  justify-center items-center bg-white w-[20vw] h-[15vh] rounded-xl shadow-sm  ${data.style}`}>
+        {deviceData.map((data, index) => (
+          <div key={index} className={`flex  justify-center items-center bg-white w-[20vw] h-[15vh] rounded-xl shadow-sm  ${data.style}`}>
             <div>
               <img src={data.image} alt="" width={60} className="mr-5"/>
             </div>

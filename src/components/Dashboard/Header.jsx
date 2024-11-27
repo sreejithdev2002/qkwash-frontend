@@ -1,11 +1,14 @@
 import React from "react";
 import { LogoutIcon, SearchIcon } from "../../Assets/Icons";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Header({ hide }) {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleLogout = () => {
+    sessionStorage.clear();
+    toast.success("User logged out successfully")
     navigate("/");
   };
 
@@ -25,7 +28,7 @@ function Header({ hide }) {
       <button
         className={`${hide} bg-[#7AEC50] rounded-3xl px-5 py-1 font-medium text-lg hover:bg-[#74e74a] transition duration-300`}
         id="barlowFont"
-        onClick={handleClick}
+        onClick={handleLogout}
       >
         Logout
         <span className="ml-5">
