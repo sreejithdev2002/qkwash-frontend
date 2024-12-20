@@ -12,6 +12,9 @@ import EditHubDetails from "./pages/EditHubDetails";
 import { ToastContainer } from "react-toastify";
 
 import 'react-toastify/dist/ReactToastify.css';
+import ServiceRequest from "./pages/ServiceRequest";
+import DeviceController from "./pages/DeviceController";
+import DeviceDetails from "./pages/DeviceDetails";
 
 
 function App() {
@@ -24,15 +27,17 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
 
           <Route path="/userlist" element={<UserList />} />
-          <Route path="/userlist/id" element={<UserDetails />} />
+          <Route path="/userlist/:usermobile" element={<UserDetails />} />
 
           <Route path="/addhub" element={<AddHub />} />
           <Route path="/hublist" element={<HubList />} />
-          <Route path="/hublist/id" element={<HubDetails />} />
+          <Route path="/hublist/:id" element={<HubDetails />} />
           <Route path="/hublist/edit/id" element={<EditHubDetails />} />
 
-          <Route path="/service-request" element={<PageOnDevelopment />} />
-          <Route path="/device-controller" element={<PageOnDevelopment />} />
+          <Route path="/hublist/device-details" element={<DeviceDetails/>} />
+
+          <Route path="/service-request" element={<ServiceRequest />} />
+          <Route path="/device-controller" element={<DeviceController />} />
           <Route path="*" element={<PageOnDevelopment />} />
         </Routes>
         <ToastContainer position="top-right" autoClose={5000} />

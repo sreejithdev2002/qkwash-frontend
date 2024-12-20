@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import ContinueBtn from "../ContinueBtn";
 import { useNavigate } from "react-router-dom";
-// import { LoginApi, OTPLoginApi } from "../../Services/Api";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -10,6 +9,10 @@ function PhoneNumberAndOtpLogin() {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [token, setToken] = useState("");
+
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
 
   const navigate = useNavigate();
   const inputs = useRef([]);
@@ -30,7 +33,7 @@ function PhoneNumberAndOtpLogin() {
       setLoading(true);
       try {
         const response = await axios.post(
-          "http://srv630050.hstgr.cloud:3000/api/master/login",
+          `${apiBaseUrl}/master/login`,
           {
             mastermobile: phone,
           },
@@ -43,8 +46,8 @@ function PhoneNumberAndOtpLogin() {
         if (response.status === 200) {
           const { otp, sessionToken } = response.data;
 
-          sessionStorage.setItem("otp", otp);
-          sessionStorage.setItem("sessionToken", sessionToken);
+          sessionStorage.setItem("otp", otp); //store OTP in session storage
+          setToken(sessionToken);
 
           toast.success("Phone number is validated, OTP sent");
           console.log("Phone number validated, OTP sent.");
@@ -91,6 +94,11 @@ function PhoneNumberAndOtpLogin() {
         if (enteredOtp === storedOtp) {
           console.log("OTP verified successfully.");
           toast.success("OTP verified successfully.");
+
+          sessionStorage.setItem("mastermobile", phone); //store mastermobile in session storage
+          sessionStorage.setItem("sessionToken", token); //store session token in session storage
+          sessionStorage.removeItem("otp"); //remove OTP from sessio storage
+
           navigate("/dashboard");
         } else {
           toast.error("Invalid OTP. Please try again.");

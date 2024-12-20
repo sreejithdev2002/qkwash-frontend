@@ -22,6 +22,16 @@ function HubDetailsForm1() {
       type: "password",
       value: "qkwashkeralahostel2024",
     },
+    {
+      labelName: "Latitude",
+      type: "text",
+      value: "1.82.443.21"
+    },
+    {
+      labelName: "Longitude",
+      type: "text",
+      value: "12.432.23.43"
+    },
   ];
   return (
     <div>
@@ -51,7 +61,7 @@ function HubDetailsForm1() {
                 value="#1234344334"
               />
             </div>
-            <h1 className="text-center my-5 font-medium text-lg">OR Details</h1>
+            <h1 className="text-center my-5 font-medium text-lg">QR Details</h1>
             <div>
               <label className="font-medium">QR Link</label>
               <input

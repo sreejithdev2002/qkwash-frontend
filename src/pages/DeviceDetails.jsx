@@ -1,19 +1,19 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
-import Header from "../components/Dashboard/Header";
-import UserlistComponent from "../components/Userlist/UserlistComponent";
+import Header from '../components/Dashboard/Header';
+import DetailsComponent from "../components/DeviceDetails/DetailsComponent";
 
-function UserList() {
+function DeviceDetails() {
   let data = "hidden";
   return (
     <div className="flex">
       <Sidebar />
       <div className="w-[80vw] bg-[#89F3FF] h-screen px-5 pt-5 overflow-auto">
         <Header hide={data} />
-        <UserlistComponent/>
+        <DetailsComponent/>
       </div>
     </div>
   );
 }
 
-export default UserList;
+export default DeviceDetails;

@@ -1,6 +1,6 @@
 import React from "react";
 
-function UserDetailsComponent() {
+function UserDetailsComponent({ usermobile }) {
   return (
     <div id="barlowFont">
       <h1 className="my-5 font-semibold text-2xl text-[#464255]">User List</h1>
@@ -11,7 +11,7 @@ function UserDetailsComponent() {
         </div>
         <div>
           <h1 className="font-medium text-lg">Mobile Number</h1>
-          <p className="font-medium text-lg">7592990849</p>
+          <p className="font-medium text-lg">{usermobile}</p>
         </div>
       </div>
     </div>

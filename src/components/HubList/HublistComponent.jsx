@@ -1,104 +1,72 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function HublistComponent() {
-  const hubListData = [
-    {
-      name: "Kerala Hostel Kochi",
-      id: "123445",
-      washer: 3,
-      dryer: 3,
-      maintenence: 3,
-      serviceRequested: 3,
-    },
-    {
-      name: "Kerala Hostel Kochi",
-      id: "123445",
-      washer: 3,
-      dryer: 3,
-      maintenence: 3,
-      serviceRequested: 3,
-    },
-    {
-      name: "Kerala Hostel Kochi",
-      id: "123445",
-      washer: 3,
-      dryer: 3,
-      maintenence: 3,
-      serviceRequested: 3,
-    },
-    {
-      name: "Kerala Hostel Kochi",
-      id: "123445",
-      washer: 3,
-      dryer: 3,
-      maintenence: 3,
-      serviceRequested: 3,
-    },
-    {
-      name: "Kerala Hostel Kochi",
-      id: "123445",
-      washer: 3,
-      dryer: 3,
-      maintenence: 3,
-      serviceRequested: 3,
-    },
-    {
-      name: "Kerala Hostel Kochi",
-      id: "123445",
-      washer: 3,
-      dryer: 3,
-      maintenence: 3,
-      serviceRequested: 3,
-    },
-    {
-      name: "Kerala Hostel Kochi",
-      id: "123445",
-      washer: 3,
-      dryer: 3,
-      maintenence: 3,
-      serviceRequested: 3,
-    },
-    {
-      name: "Kerala Hostel Kochi",
-      id: "123445",
-      washer: 3,
-      dryer: 3,
-      maintenence: 3,
-      serviceRequested: 3,
-    },
-  ];
+  const [hubList, setHubList] = useState([]);
+  const [error, setError] = useState(null);
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
+  const fetchData = async () => {
+    try {
+      const mastermobile = sessionStorage.getItem("mastermobile");
+      const sessionToken = sessionStorage.getItem("sessionToken");
+
+      const response = await axios.post(
+        `${apiBaseUrl}/masterdashboard/hublistpage`,
+        {
+          mastermobile,
+          sessionToken,
+        }
+      );
+      if (response.status === 200) {
+        setHubList(response.data.data);
+        console.log(response.data.data);
+      } else {
+        setError("Failed to fetch data. Please try again.", error);
+      }
+    } catch (err) {
+      setError("An error occurred while fetching the data.");
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []); 
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate("/hublist/id")
-  }
   return (
     <div id="barlowFont">
       <h1 className="my-5 font-semibold text-2xl text-[#464255]">Hub List</h1>
       <div className="overflow-auto h-[80vh] pr-5" id="scrollbar">
-        {hubListData.map((data) => (
-          <div className="bg-[#D9D9D9] hover:bg-[#d1d1d1] flex justify-between px-10 py-5 my-5 text-center rounded-2xl cursor-pointer transition-all duration-300" onClick={handleClick}>
+        {hubList.map((data) => (
+          <div
+            className="font-medium bg-[#D9D9D9] hover:bg-[#d1d1d1] flex justify-between px-10 py-5 my-5 text-center rounded-2xl cursor-pointer transition-all duration-300"
+            onClick={() => navigate(`/hublist/${data.hubid}`)}
+          >
             <div>
-              <h1 className="font-medium text-2xl">{data.name}</h1>
-              <p className="text-start">#{data.id}</p>
+              <h1 className="text-2xl text-[#464255] text-start">
+                {data.hubname}
+              </h1>
+              <p className="text-xl text-start text-[#A3A3A3]">#{data.hubid}</p>
             </div>
-            <div>
+            <div className="flex flex-col justify-between text-lg">
               <h1>Washer</h1>
-              <p>{data.washer}</p>
+              <p>{data.washerCount}</p>
             </div>
-            <div>
+            <div className="flex flex-col justify-between text-lg">
               <h1>Dryer</h1>
-              <p>{data.dryer}</p>
+              <p>{data.dryerCount}</p>
             </div>
-            <div>
+            <div className="flex flex-col justify-between text-lg">
               <h1>Maintenence</h1>
-              <p>{data.maintenence}</p>
+              <p>{data.maintenanceCount}</p>
             </div>
-            <div>
+            <div className="flex flex-col justify-between text-lg">
               <h1>Service Requested</h1>
-              <p>{data.serviceRequested}</p>
+              <p>{data.serviceRequestedCount}</p>
             </div>
           </div>
         ))}

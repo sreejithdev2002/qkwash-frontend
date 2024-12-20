@@ -43,12 +43,12 @@ const Sidebar = () => {
           >
             <span
               className={`absolute left-0 h-full w-1 bg-[#00B074] rounded-r-md ${
-                location.pathname === item.path ? "block" : "hidden"
+                location.pathname.startsWith(item.path) ? "block" : "hidden"
               }`}
             ></span>
             <div
               className={`flex justify-start items-center mx-8 hover:bg-[#308FFD36] py-3 px-5 rounded-lg w-52 ${
-                location.pathname === item.path
+                location.pathname.startsWith(item.path)
                   ? "text-[#00B074] bg-[#308FFD36]"
                   : "text-[#464255]"
               }`}

@@ -1,21 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 
-function DeviceDetailsForm() {
-  const [forms, setForms] = useState([]);
-
+function DeviceDetailsForm({ deviceForms, setDeviceForms }) {
   const addDeviceForm = () => {
     const newForm = {
-      id: forms.length + 1,
-      deviceName: `Device ${forms.length + 1}`,
-      selectedOption: null,
+      deviceid: "",
+      deviceType: null,
     };
-    setForms([...forms, newForm]);
+    setDeviceForms([...deviceForms, newForm]);
   };
 
-  const handleOptionClick = (id, option) => {
-    setForms((prevForms) =>
-      prevForms.map((form) =>
-        form.id === id ? { ...form, selectedOption: option } : form
+  const handleOptionClick = (index, option) => {
+    setDeviceForms((prevForms) =>
+      prevForms.map((form, idx) =>
+        idx === index ? { ...form, deviceType: option } : form
+      )
+    );
+  };
+
+  const handleInputChange = (index, value) => {
+    setDeviceForms((prevForms) =>
+      prevForms.map((form, idx) =>
+        idx === index ? { ...form, deviceid: value } : form
       )
     );
   };
@@ -24,15 +29,15 @@ function DeviceDetailsForm() {
     <div id="barlowFont" className="p-5">
       <h1 className="text-2xl my-2">Device Details</h1>
       <div>
-        {forms.map((data) => (
-          <div key={data.id} className="my-5">
-            <h1 className="my-3 font-medium">{data.deviceName}</h1>
+        {deviceForms.map((data, index) => (
+          <div key={index} className="my-5">
             <div className="flex items-center">
               <h1 className="font-medium mr-10">Type of Device</h1>
               <button
-                onClick={() => handleOptionClick(data.id, "Washer")}
+                onClick={() => handleOptionClick(index, "Washer")}
+                required
                 className={`px-5 py-1 rounded-xl mx-5 transition duration-300 ${
-                  data.selectedOption === "Washer"
+                  data.deviceType === "Washer"
                     ? "bg-[#69E08B]"
                     : "bg-white text-black hover:bg-gray-200"
                 }`}
@@ -40,9 +45,10 @@ function DeviceDetailsForm() {
                 Washer
               </button>
               <button
-                onClick={() => handleOptionClick(data.id, "Dryer")}
+                onClick={() => handleOptionClick(index, "Dryer")}
+                required
                 className={`px-5 py-1 rounded-xl mx-5 transition duration-300 ${
-                  data.selectedOption === "Dryer"
+                  data.deviceType === "Dryer"
                     ? "bg-[#69E08B]"
                     : "bg-white text-black hover:bg-gray-200"
                 }`}
@@ -54,8 +60,11 @@ function DeviceDetailsForm() {
               <h1 className="font-medium mr-24">Device ID</h1>
               <input
                 type="text"
+                value={data.deviceid}
+                onChange={(e) => handleInputChange(index, e.target.value)}
                 className="rounded-lg py-1 px-5"
-                placeholder="#4546546467476"
+                placeholder="Enter Device ID"
+                required
               />
             </div>
           </div>
