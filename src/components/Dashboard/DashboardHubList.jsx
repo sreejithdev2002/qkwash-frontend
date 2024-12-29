@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function DashboardHubList() {
   const [hubList, setHubList] = useState([]);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 
@@ -46,6 +48,9 @@ function DashboardHubList() {
             hubList.map((data) => (
               <div
                 key={data.hubid}
+                onClick={() => {
+                  navigate(`/hublist/${data.hubid}`);
+                }}
                 className="bg-[#CEDCEC] rounded-xl px-5 py-2 my-2 scroll-smooth"
               >
                 <h1 className="font-medium text-[#464255] text-2xl">

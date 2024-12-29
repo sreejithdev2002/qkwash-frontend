@@ -31,10 +31,10 @@ function App() {
 
           <Route path="/addhub" element={<AddHub />} />
           <Route path="/hublist" element={<HubList />} />
-          <Route path="/hublist/:id" element={<HubDetails />} />
-          <Route path="/hublist/edit/id" element={<EditHubDetails />} />
+          <Route path="/hublist/:hubId" element={<HubDetails />} />
+          <Route path="/hublist/edit/:hubId" element={<EditHubDetails />} />
 
-          <Route path="/hublist/device-details" element={<DeviceDetails/>} />
+          <Route path="/hublist/device-details/:deviceId" element={<DeviceDetails/>} />
 
           <Route path="/service-request" element={<ServiceRequest />} />
           <Route path="/device-controller" element={<DeviceController />} />

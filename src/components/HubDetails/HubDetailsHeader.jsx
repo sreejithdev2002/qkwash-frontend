@@ -1,11 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function HubDetailsHeader() {
+function HubDetailsHeader({ hubId }) {
   const navigate = useNavigate();
 
   const handleEdit = () => {
-    navigate("/hublist/edit/id");
+    navigate(`/hublist/edit/${hubId}`);
   };
 
   const handleDelete = () => {

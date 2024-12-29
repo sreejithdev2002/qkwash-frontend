@@ -86,12 +86,15 @@ function DetailsComponent() {
         <div>
           <h1 className="font-medium">Status</h1>
           <div className="mt-5 flex">
-            <span type="text" className="py-1 px-10 rounded-md bg-white mr-3">
+            <span type="text" className="py-1 px-10 rounded-md bg-[#69E08B] mr-3">
+              Good
+            </span>
+            {/* <span type="text" className="py-1 px-10 rounded-md bg-white mx-3">
               Maintenance
             </span>
             <span type="text" className="py-1 px-10 rounded-md bg-white ml-3">
               Not Working
-            </span>
+            </span> */}
           </div>
         </div>
       </div>

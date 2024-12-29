@@ -62,7 +62,7 @@ function EditHubDetailsForm() {
                 value="#1234344334"
               />
             </div>
-            <h1 className="text-center my-5 font-medium text-lg">QR Details</h1>
+            {/* <h1 className="text-center my-5 font-medium text-lg">QR Details</h1>
             <div>
               <label className="font-medium">QR Link</label>
               <input
@@ -71,7 +71,7 @@ function EditHubDetailsForm() {
                 placeholder="https://thomsonqr"
                 value="https://thomsonqr"
               />
-            </div>
+            </div> */}
           </form>
         </div>
       </div>
