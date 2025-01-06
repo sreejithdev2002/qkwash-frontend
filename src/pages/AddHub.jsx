@@ -30,40 +30,18 @@ function AddHub() {
     const transformedDevices = deviceForms.map((device) => {
       const { deviceid, deviceType } = device;
 
-      const relevantPrices =
-        deviceType === "Washer"
-          ? {
-              actual_quick_amount: Number(priceDetails.quick?.actual) || 0,
-              offer_quick_amount: Number(priceDetails.quick?.offer) || 0,
-              actual_steam_amount: Number(priceDetails.steam?.actual) || 0,
-              offer_steam_amount: Number(priceDetails.steam?.offer) || 0,
-              actual_deterg_plus_amount:
-                Number(priceDetails.detergent?.actual) || 0,
-              offer_deterg_plus_amount:
-                Number(priceDetails.detergent?.offer) || 0,
-              actual_other_three_amount: 0, // Washer doesn't need this
-              offer_other_three_amount: 0, // Washer doesn't need this
-              actual_stiff_ultra_amount: 0, // Washer doesn't need this
-              offer_stiff_ultra_amount: 0, // Washer doesn't need this
-            }
-          : deviceType === "Dryer"
-          ? {
-              actual_quick_amount: 0, // Dryer doesn't need this
-              offer_quick_amount: 0, // Dryer doesn't need this
-              actual_steam_amount: 0, // Dryer doesn't need this
-              offer_steam_amount: 0, // Dryer doesn't need this
-              actual_deterg_plus_amount: 0, // Dryer doesn't need this
-              offer_deterg_plus_amount: 0, // Dryer doesn't need this
-              actual_other_three_amount:
-                Number(priceDetails.otherThree?.actual) || 0,
-              offer_other_three_amount:
-                Number(priceDetails.otherThree?.offer) || 0,
-              actual_stiff_ultra_amount:
-                Number(priceDetails.stiffUltra?.actual) || 0,
-              offer_stiff_ultra_amount:
-                Number(priceDetails.stiffUltra?.offer) || 0,
-            }
-          : {};
+      const relevantPrices = {
+        actual_quick_amount: Number(priceDetails.quick?.actual) || 0,
+        offer_quick_amount: Number(priceDetails.quick?.offer) || 0,
+        actual_steam_amount: Number(priceDetails.steam?.actual) || 0,
+        offer_steam_amount: Number(priceDetails.steam?.offer) || 0,
+        actual_deterg_plus_amount: Number(priceDetails.detergent?.actual) || 0,
+        offer_deterg_plus_amount: Number(priceDetails.detergent?.offer) || 0,
+        actual_other_three_amount: Number(priceDetails.otherThree?.actual) || 0,
+        offer_other_three_amount: Number(priceDetails.otherThree?.offer) || 0,
+        actual_stiff_ultra_amount: Number(priceDetails.stiffUltra?.actual) || 0,
+        offer_stiff_ultra_amount: Number(priceDetails.stiffUltra?.offer) || 0,
+      };
 
       return {
         deviceid,
@@ -73,8 +51,8 @@ function AddHub() {
     });
 
     const payload = {
-      mastermobile: mastermobile, // Example master mobile
-      sessionToken: sessionToken, // Example session token
+      mastermobile: mastermobile,
+      sessionToken: sessionToken,
       ownerEmail: hubDetails.ownerEmail,
       ownerPassword: hubDetails.ownerPassword,
       hubName: hubDetails.hubName,

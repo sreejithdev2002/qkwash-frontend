@@ -1,64 +1,39 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-function History() {
-  const tableData = [
-    {
-      userId: "U1234",
-      date: "20-12-24",
-      deviceId: "123",
-      cycles: "HV WASH",
-      amount: 130,
-    },
-    {
-      userId: "U1234",
-      date: "20-12-24",
-      deviceId: "353",
-      cycles: "HV WASH",
-      amount: 130,
-    },
-    {
-      userId: "U1232",
-      date: "20-12-24",
-      deviceId: "353",
-      cycles: "QK WASH",
-      amount: 100,
-    },
-    {
-      userId: "U1234",
-      date: "20-12-24",
-      deviceId: "123",
-      cycles: "QK WASH",
-      amount: 100,
-    },
-    {
-      userId: "U1233",
-      date: "19-12-24",
-      deviceId: "353",
-      cycles: "HV WASH",
-      amount: 130,
-    },
-    {
-      userId: "U1235",
-      date: "19-12-24",
-      deviceId: "123",
-      cycles: "QK WASH",
-      amount: 100,
-    },
-    {
-      userId: "U1235",
-      date: "19-12-24",
-      deviceId: "123",
-      cycles: "QK WASH",
-      amount: 100,
-    },
-    {
-      userId: "U1235",
-      date: "19-12-24",
-      deviceId: "123",
-      cycles: "QK WASH",
-      amount: 100,
-    },
-  ];
+function History({ hubid }) {
+  const [history, setHistory] = useState([]);
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
+  const fetchData = async () => {
+    try {
+      const mastermobile = sessionStorage.getItem("mastermobile");
+      const sessionToken = sessionStorage.getItem("sessionToken");
+
+      const response = await axios.post(
+        `${apiBaseUrl}/masterdashboard/hubhistory`,
+        {
+          mastermobile,
+          sessionToken,
+          hubid,
+        }
+      );
+
+      if (response.status === 200) {
+        setHistory(response.data.historyRecords);
+        console.log("History fetched successfully");
+      } else {
+        console.log("Failed to fetch history");
+      }
+    } catch (error) {
+      console.log("Internal server error : ", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [hubid]);
+
   return (
     <div className="overflow-auto h-[60vh]">
       <table id="montserratFont" className="w-[75vw] mt-5">
@@ -68,7 +43,7 @@ function History() {
               DATE
             </th>
             <th className=" border-black px-10 py-5 pb-8 font-medium text-2xl">
-              USER ID
+              USER MOBILE
             </th>
             <th className=" border-black px-10 py-5 pb-8 font-medium text-2xl">
               DEVICE ID
@@ -82,13 +57,23 @@ function History() {
           </tr>
         </thead>
         <tbody>
-          {tableData.map((data) => (
+          {history.map((data) => (
             <tr className="text-center hover:bg-black hover:text-[#89F3FF] transition-colors duration-200">
-              <td className="p-5 font-medium text-lg">{data.date}</td>
-              <td className="p-5 font-medium text-lg">{data.userId}</td>
+              <td className="p-5 font-medium text-lg">
+                {new Date(data.device_booked_user_end_time).toLocaleDateString(
+                  "en-GB"
+                )}
+              </td>
+              <td className="p-5 font-medium text-lg">
+                {data.device_booked_user_mobile_no}
+              </td>
               <td className="p-5 font-medium text-lg">{data.deviceId}</td>
-              <td className="p-5 font-medium text-lg">{data.cycles}</td>
-              <td className="p-5 font-medium text-lg">{data.amount}</td>
+              <td className="p-5 font-medium text-lg">
+                {data.booked_user_selected_wash_mode}
+              </td>
+              <td className="p-5 font-medium text-lg">
+                {data.booked_user_amount}
+              </td>
             </tr>
           ))}
         </tbody>

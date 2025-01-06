@@ -69,11 +69,11 @@ function UserlistComponent() {
             </div>
             <div>
               <h2 className="font-medium text-center">Total Wash</h2>
-              <p className="font-medium text-center">{data.numberofWashes}</p>
+              <p className="font-medium text-center">{data.numberofWashes || 0}</p>
             </div>
             <div>
               <h2 className="font-medium text-center">Total Dry</h2>
-              <p className="font-medium text-center">{data.totalDry}</p>
+              <p className="font-medium text-center">{data.numberofDryers || 0}</p>
             </div>
           </div>
         ))}

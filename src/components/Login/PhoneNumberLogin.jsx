@@ -7,12 +7,12 @@ import { toast } from "react-toastify";
 function PhoneNumberAndOtpLogin() {
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState(["", "", "", ""]);
+  const [savedOtp, setSavedOtp] = useState("");
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState("");
 
   const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
-
 
   const navigate = useNavigate();
   const inputs = useRef([]);
@@ -46,7 +46,7 @@ function PhoneNumberAndOtpLogin() {
         if (response.status === 200) {
           const { otp, sessionToken } = response.data;
 
-          sessionStorage.setItem("otp", otp); //store OTP in session storage
+          setSavedOtp(otp);
           setToken(sessionToken);
 
           toast.success("Phone number is validated, OTP sent");
@@ -88,16 +88,13 @@ function PhoneNumberAndOtpLogin() {
     if (enteredOtp.length === 4) {
       setLoading(true);
 
-      const storedOtp = sessionStorage.getItem("otp");
-
       try {
-        if (enteredOtp === storedOtp) {
+        if (enteredOtp === savedOtp) {
           console.log("OTP verified successfully.");
           toast.success("OTP verified successfully.");
 
-          sessionStorage.setItem("mastermobile", phone); //store mastermobile in session storage
-          sessionStorage.setItem("sessionToken", token); //store session token in session storage
-          sessionStorage.removeItem("otp"); //remove OTP from sessio storage
+          sessionStorage.setItem("mastermobile", phone);
+          sessionStorage.setItem("sessionToken", token);
 
           navigate("/dashboard");
         } else {

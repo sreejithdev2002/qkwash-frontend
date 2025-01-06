@@ -39,32 +39,6 @@ function HubDetailsForm({ hubDetails, setHubDetails }) {
             </div>
           ))}
         </form>
-        {/* <div>
-          <form>
-            <div className="flex justify-between my-2 items-center">
-              <label className="font-medium">Hub ID</label>
-              <input
-                type="text"
-                name="hubId"
-                value={hubDetails.hubId || ""}
-                onChange={handleInputChange}
-                className="bg-[#FDFDFD] rounded-lg ml-5 py-1 px-5 w-80"
-              />
-            </div>
-            <h1 className="text-center my-5 font-medium text-lg">QR Details</h1>
-            <div>
-              <label className="font-medium">QR Link</label>
-              <input
-                type="text"
-                name="qrLink"
-                value={hubDetails.qrLink || ""}
-                onChange={handleInputChange}
-                className="bg-[#FDFDFD] rounded-lg ml-5 py-1 px-5 w-80"
-                placeholder="https://thomsonqr"
-              />
-            </div>
-          </form>
-        </div> */}
       </div>
     </div>
   );

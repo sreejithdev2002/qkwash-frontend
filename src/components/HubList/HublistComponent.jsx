@@ -47,7 +47,7 @@ function HublistComponent() {
             onClick={() => navigate(`/hublist/${data.hubid}`)}
           >
             <div>
-              <h1 className="text-2xl text-[#464255] text-start">
+              <h1 className="text-2xl text-[#464255] text-start max-w-[180px] truncate">
                 {data.hubname}
               </h1>
               <p className="text-xl text-start text-[#A3A3A3]">#{data.hubid}</p>

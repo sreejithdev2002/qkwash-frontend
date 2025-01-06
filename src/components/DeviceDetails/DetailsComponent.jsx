@@ -1,64 +1,69 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 function DetailsComponent() {
-  const tableData = [
-    {
-      userId: "U1234",
-      date: "20-12-24",
-      deviceId: "123",
-      cycles: "HV WASH",
-      amount: 130,
-    },
-    {
-      userId: "U1234",
-      date: "20-12-24",
-      deviceId: "353",
-      cycles: "HV WASH",
-      amount: 130,
-    },
-    {
-      userId: "U1232",
-      date: "20-12-24",
-      deviceId: "353",
-      cycles: "QK WASH",
-      amount: 100,
-    },
-    {
-      userId: "U1234",
-      date: "20-12-24",
-      deviceId: "123",
-      cycles: "QK WASH",
-      amount: 100,
-    },
-    {
-      userId: "U1233",
-      date: "19-12-24",
-      deviceId: "353",
-      cycles: "HV WASH",
-      amount: 130,
-    },
-    {
-      userId: "U1235",
-      date: "19-12-24",
-      deviceId: "123",
-      cycles: "QK WASH",
-      amount: 100,
-    },
-    {
-      userId: "U1235",
-      date: "19-12-24",
-      deviceId: "123",
-      cycles: "QK WASH",
-      amount: 100,
-    },
-    {
-      userId: "U1235",
-      date: "19-12-24",
-      deviceId: "123",
-      cycles: "QK WASH",
-      amount: 100,
-    },
-  ];
+  const { deviceId } = useParams();
+
+  const [deviceTable, setDeviceTable] = useState([]);
+  const [priceData, setPriceData] = useState([]);
+
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
+  const fetchPriceData = async () => {
+    try {
+      const mastermobile = sessionStorage.getItem("mastermobile");
+      const sessionToken = sessionStorage.getItem("sessionToken");
+
+      const response = await axios.post(
+        `${apiBaseUrl}/masterdashboard/particulardevicedata`,
+        {
+          mastermobile,
+          sessionToken,
+          deviceId,
+        }
+      );
+
+      if (response.status === 200) {
+        setPriceData(response.data);
+      } else {
+        console.log("Failed to fetch price data");
+      }
+    } catch (error) {
+      console.error("Internal Server Error : " + error);
+    }
+  };
+
+  const fetchTableData = async () => {
+    try {
+      const mastermobile = sessionStorage.getItem("mastermobile");
+      const sessionToken = sessionStorage.getItem("sessionToken");
+
+      const response = await axios.post(
+        `${apiBaseUrl}/masterdashboard/particulardevicehistorydata`,
+        {
+          mastermobile,
+          sessionToken,
+          deviceId,
+        }
+      );
+
+      if (response.status === 200) {
+        setDeviceTable(response.data.historyRecords);
+        console.dir(response.data + " heeeeeyyyy");
+      } else {
+        console.log("Failed to fetch price data");
+      }
+    } catch (error) {
+      console.error("Internal Server Error : " + error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPriceData();
+    fetchTableData();
+  }, [deviceId]);
+
   return (
     <div id="barlowFont">
       <div className="flex mt-10">
@@ -67,34 +72,47 @@ function DetailsComponent() {
           <div className="flex justify-between items-center mt-5">
             <label className="mr-10 font-medium">Type of Device</label>
             <span type="text" className="py-1 px-10 rounded-md bg-[#69E08B]">
-              Washer
+              {priceData.devicetype}
             </span>
           </div>
           <div className="flex justify-between items-center mt-5">
             <label className="mr-10 font-medium">Hub ID</label>
             <span type="text" className="py-1 px-10 rounded-md bg-white">
-              #4546546467474
+              #{priceData.hubid}
             </span>
           </div>
           <div className="flex justify-between items-center mt-5">
-            <label className="mr-10 font-medium">Device ID</label>
+            <label className="font-medium">Device ID</label>
             <span type="text" className="py-1 px-10 rounded-md bg-white">
-              #4546546467474
+              #{deviceId}
             </span>
           </div>
         </div>
         <div>
           <h1 className="font-medium">Status</h1>
           <div className="mt-5 flex">
-            <span type="text" className="py-1 px-10 rounded-md bg-[#69E08B] mr-3">
-              Good
+            <span
+              type="text"
+              className="py-1 px-10 rounded-md bg-[#69E08B] mr-3"
+            >
+              {priceData.devicestatus?.charAt(0).toUpperCase() +
+                priceData.devicestatus?.slice(1).toLowerCase()}
             </span>
-            {/* <span type="text" className="py-1 px-10 rounded-md bg-white mx-3">
-              Maintenance
+          </div>
+        </div>
+        <div>
+          <h1 className="font-medium">Condition</h1>
+          <div className="mt-5 flex">
+            <span
+              type="text"
+              className={`py-1 px-10 rounded-md mr-3 ${
+                priceData.devicecondition === "Good"
+                  ? "bg-[#69E08B]"
+                  : "bg-[#E54040]"
+              }`}
+            >
+              {priceData.devicecondition}
             </span>
-            <span type="text" className="py-1 px-10 rounded-md bg-white ml-3">
-              Not Working
-            </span> */}
           </div>
         </div>
       </div>
@@ -104,15 +122,15 @@ function DetailsComponent() {
       >
         <div className="px-28 py-10 bg-[#8ED4DD] rounded-xl mr-5 text-center text-2xl font-medium">
           <h1>TODAY</h1>
-          <p>9</p>
+          <p>{priceData.todayCount || 0}</p>
         </div>
         <div className="px-28 py-10 bg-[#64D577] rounded-xl mr-5 text-center text-2xl font-medium">
           <h1>LAST WEEK</h1>
-          <p>79</p>
+          <p>{priceData.lastWeekCount || 0}</p>
         </div>
         <div className="px-28 py-10 bg-[#8977DA] rounded-xl mr-5 text-center text-2xl font-medium">
           <h1>LAST MONTH</h1>
-          <p>200</p>
+          <p>{priceData.lastMonthCount || 0}</p>
         </div>
       </div>
       <div className="overflow-auto h-[60vh] mt-10">
@@ -123,7 +141,7 @@ function DetailsComponent() {
                 DATE
               </th>
               <th className=" border-black px-10 py-5 pb-8 font-medium text-2xl">
-                USER ID
+                USER MOBILE
               </th>
               <th className=" border-black px-10 py-5 pb-8 font-medium text-2xl">
                 DEVICE ID
@@ -137,13 +155,23 @@ function DetailsComponent() {
             </tr>
           </thead>
           <tbody>
-            {tableData.map((data) => (
+            {deviceTable.map((data) => (
               <tr className="text-center hover:bg-black hover:text-[#89F3FF] transition-colors duration-200">
-                <td className="p-5 font-medium text-lg">{data.date}</td>
-                <td className="p-5 font-medium text-lg">{data.userId}</td>
-                <td className="p-5 font-medium text-lg">{data.deviceId}</td>
-                <td className="p-5 font-medium text-lg">{data.cycles}</td>
-                <td className="p-5 font-medium text-lg">{data.amount}</td>
+                <td className="p-5 font-medium text-lg">
+                  {new Date(
+                    data.device_booked_user_end_time
+                  ).toLocaleDateString("en-GB")}
+                </td>
+                <td className="p-5 font-medium text-lg">
+                  {data.device_booked_user_mobile_no}
+                </td>
+                <td className="p-5 font-medium text-lg">{deviceId}</td>
+                <td className="p-5 font-medium text-lg">
+                  {data.booked_user_selected_wash_mode}
+                </td>
+                <td className="p-5 font-medium text-lg">
+                  {data.booked_user_amount}
+                </td>
               </tr>
             ))}
           </tbody>

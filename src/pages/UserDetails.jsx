@@ -9,7 +9,7 @@ import axios from "axios";
 function UserDetails() {
   let data = "hidden";
   const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
-
+  
   const [userDetailsComponent, setUserDetailsComponent] = useState([]);
   const [error, setError] = useState(null);
 
@@ -29,18 +29,19 @@ function UserDetails() {
           usermobile,
         }
       );
-      console.log(response.data.data.hubid + " This is the response")
-      if(response.status === 200){
+
+      console.log(response.data.data + " This is the response");
+
+      if (response.status === 200) {
         setUserDetailsComponent(response.data.data);
       } else {
         setError("Failed to fetch data. Please try again.", error);
       }
     } catch (error) {
       setError("Failed to fetch data. Please try again.", error);
-      console.error(error)
+      console.error(error);
     }
   };
-
 
   useEffect(() => {
     fetchData();
@@ -52,7 +53,7 @@ function UserDetails() {
       <div className="w-[80vw] bg-[#89F3FF] h-screen overflow-auto px-5 pt-5">
         <Header hide={data} />
         <UserDetailsComponent usermobile={usermobile} />
-        <UserDetailsTable userDetailsComponent={userDetailsComponent}/>
+        <UserDetailsTable userDetailsComponent={userDetailsComponent} />
       </div>
     </div>
   );

@@ -1,38 +1,52 @@
 import React from "react";
 
-function EditHubDetailsForm() {
+function EditHubDetailsForm({ hubData, setHubData }) {
+  const handleChange = (field, value) => {
+    setHubData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
+  };
+
   const hubFormData = [
     {
       labelName: "Hub Name",
       type: "text",
-      value: "Kerala Hostel",
+      value: hubData.hubName,
+      field: "hubName",
     },
     {
       labelName: "Hub Location",
       type: "text",
-      value: "Kochi",
+      value: hubData.hubLocation,
+      field: "hubLocation",
     },
     {
-      labelName: "Hub User Name",
-      type: "text",
-      value: "keralahostelkochi",
+      labelName: "Hub User Email",
+      type: "email",
+      value: hubData.hubUserEmail,
+      field: "hubUserEmail",
     },
     {
       labelName: "Hub Password",
       type: "password",
-      value: "qkwashkeralahostel2024",
+      value: hubData.hubPassword,
+      field: "hubPassword",
     },
     {
       labelName: "Latitude",
       type: "text",
-      value: "1.82.443.21"
+      value: hubData.latitude,
+      field: "latitude",
     },
     {
       labelName: "Longitude",
       type: "text",
-      value: "12.432.23.43"
+      value: hubData.longitude,
+      field: "longitude",
     },
   ];
+
   return (
     <div>
       <h1 className="text-2xl mt-10 mb-2">Hub Details</h1>
@@ -48,6 +62,7 @@ function EditHubDetailsForm() {
                 type={data.type}
                 className="bg-[#FDFDFD] rounded-lg ml-5 px-5 py-1 w-80"
                 value={data.value}
+                onChange={(e) => handleChange(data.field, e.target.value)}
               />
             </div>
           ))}
@@ -59,19 +74,10 @@ function EditHubDetailsForm() {
               <input
                 type="text"
                 className="bg-[#FDFDFD] rounded-lg ml-5 py-1 px-5 w-80 text-[#877C7C]"
-                value="#1234344334"
+                value={hubData.hubId}
+                readOnly
               />
             </div>
-            {/* <h1 className="text-center my-5 font-medium text-lg">QR Details</h1>
-            <div>
-              <label className="font-medium">QR Link</label>
-              <input
-                type="text"
-                className="bg-[#FDFDFD] rounded-lg ml-5 py-1 px-5 w-80"
-                placeholder="https://thomsonqr"
-                value="https://thomsonqr"
-              />
-            </div> */}
           </form>
         </div>
       </div>

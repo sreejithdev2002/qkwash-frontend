@@ -4,29 +4,29 @@ import Image2 from "../../Assets/Images/Icon1.png";
 import Image3 from "../../Assets/Images/Icon2.png";
 import Image4 from "../../Assets/Images/Icon3.png";
 
-function DashboardComponent() {
+function DashboardComponent({hubData}) {
   const deviceData = [
     {
       name: "Working Device",
-      number: 75,
+      number: hubData.workingDevice,
       image: Image1,
       style: "mr-4"
     },
     {
       name: "Waiting for job",
-      number: 357,
+      number: hubData.waitingForJob,
       image: Image2,
       style: "mx-4"
     },
     {
       name: "Service Devices",
-      number: 65,
+      number: hubData.serviceDevices,
       image: Image3,
       style: "mx-4"
     },
     {
       name: "Total Devices",
-      number: 128,
+      number: hubData.totalDevices,
       image: Image4,
       style: "ml-4"
     },

@@ -34,8 +34,8 @@ function DashboardHubList() {
   };
 
   useEffect(() => {
-    fetchData(); // Fetches data once on mount
-  }, []); // Empty array to avoid infinite loop
+    fetchData();
+  }, []);
 
   return (
     <div className="bg-[#DCE7DDBD] rounded-2xl px-10 py-5 mt-2" id="barlowFont">

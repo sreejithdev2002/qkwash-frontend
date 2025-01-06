@@ -1,15 +1,39 @@
+import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function HubDetailsHeader({ hubId }) {
   const navigate = useNavigate();
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 
   const handleEdit = () => {
     navigate(`/hublist/edit/${hubId}`);
   };
 
-  const handleDelete = () => {
-    console.log("Hub Deleted");
+  const handleDelete = async () => {
+    try {
+      const mastermobile = sessionStorage.getItem("mastermobile");
+      const sessionToken = sessionStorage.getItem("sessionToken");
+
+      const response = await axios.post(
+        `${apiBaseUrl}/masterdashboard/deletehub`,
+        {
+          mastermobile,
+          sessionToken,
+          hubid: hubId,
+        }
+      );
+
+      if (response.status === 200) {
+        toast.success("Hub deleted successfully");
+        navigate("/hublist");
+      } else {
+        toast.error("Failed to delete hub");
+      }
+    } catch (error) {
+      toast.error("An error occured!");
+    }
   };
 
   return (

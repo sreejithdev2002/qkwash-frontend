@@ -1,12 +1,6 @@
 import React from "react";
 
 function UserDetailsTable({ userDetailsComponent }) {
-  const formatDate = (isoDate) => {
-    if (!isoDate) return "";
-    const dateObj = new Date(isoDate);
-    return dateObj.toISOString().split("T")[0];
-  };
-
   return (
     <table id="montserratFont" className="w-[75vw] mt-5">
       <thead>
@@ -36,7 +30,9 @@ function UserDetailsTable({ userDetailsComponent }) {
           >
             <td className="p-5 font-medium text-lg">{data.hubid}</td>
             <td className="p-5 font-medium text-lg">
-              {formatDate(data.device_booked_user_end_time)}
+              {new Date(data.device_booked_user_end_time).toLocaleDateString(
+                "en-GB"
+              )}
             </td>
             <td className="p-5 font-medium text-lg">{data.deviceid}</td>
             <td className="p-5 font-medium text-lg">
