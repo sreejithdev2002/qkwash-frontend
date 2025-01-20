@@ -6,7 +6,7 @@ import AddHubCard from '../components/AddHubCard';
 
 function HubList() {
     let data = "hidden";
-    let position = "top-8 right-20"
+    let position = "lg:top-8 top-16 lg:right-20 right-2"
     return (
       <div className="flex">
         <Sidebar />

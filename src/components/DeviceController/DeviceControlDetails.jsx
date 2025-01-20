@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import JobStatusCard from "./JobStatusCard";
 
-function DeviceControlDetails() {
+function DeviceControlDetails({ deviceId }) {
+  console.log("Device Id is : " + deviceId);
   const [selectedAction, setSelectedAction] = useState(null);
   const [hardwareControl, setHardwareControl] = useState({
     drainPump: null,

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
-import Header from "../components/Dashboard/Header";
+// import Header from "../components/Dashboard/Header";
+import HeaderUserList from "../components/Userlist/HeaderUserList";
 import UserDetailsComponent from "../components/UserDetails/UserDetailsComponent";
 import UserDetailsTable from "../components/UserDetails/UserDetailsTable";
 import { useParams } from "react-router-dom";
@@ -45,13 +46,13 @@ function UserDetails() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [usermobile]);
 
   return (
     <div className="flex">
       <Sidebar />
       <div className="w-[80vw] bg-[#89F3FF] h-screen overflow-auto px-5 pt-5">
-        <Header hide={data} />
+        <HeaderUserList hide={data} />
         <UserDetailsComponent usermobile={usermobile} />
         <UserDetailsTable userDetailsComponent={userDetailsComponent} />
       </div>

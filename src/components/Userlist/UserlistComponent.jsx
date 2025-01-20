@@ -42,38 +42,43 @@ function UserlistComponent() {
 
   const navigate = useNavigate();
 
-
   return (
     <div id="barlowFont">
-      <h1 className="my-5 font-semibold text-2xl text-[#464255]">User List</h1>
-      <div className="flex flex-col">
+      <h1 className="mt-3 mb-2 lg:my-5 font-semibold text-xl lg:text-2xl text-[#464255]">
+        User List
+      </h1>
+      <div className="flex flex-col overflow-auto h-[80vh] pr-5" id="scrollbar">
         {userList.map((data) => (
           <div
             key={data.userid}
-            className="grid grid-cols-4 mx-0 justify-start bg-[#D9D9D9] hover:bg-[#d4d3d3] rounded-2xl p-4 my-3 transition duration-300 cursor-pointer"
+            className="grid grid-cols-4 mx-0 justify-start bg-[#D9D9D9] hover:bg-[#d4d3d3] rounded-lg lg:rounded-2xl px-2 lg:px-10 py-2 lg:py-5 my-2 lg:my-5 transition duration-300 cursor-pointer"
             onClick={() => {
               navigate(`/userlist/${data.usermobile}`);
             }}
           >
             <div>
-              <h1 className="text-2xl text-[#464255] font-medium pl-5">
+              <h1 className="text-[10px] lg:text-2xl text-[#464255] font-medium pl-5 first-letter:uppercase">
                 {data.username}
               </h1>
-              <p className="font-medium text-[#A3A3A3] text-xl pl-5">
+              <p className="font-medium text-[#A3A3A3] text-[8px] lg:text-xl pl-5">
                 #{data.userid}
               </p>
             </div>
-            <div>
+            <div className="text-[8px] lg:text-lg">
               <h2 className="font-medium text-center">Mobile Number</h2>
               <p className="font-medium text-center">{data.usermobile}</p>
             </div>
-            <div>
+            <div className="text-[8px] lg:text-lg">
               <h2 className="font-medium text-center">Total Wash</h2>
-              <p className="font-medium text-center">{data.numberofWashes || 0}</p>
+              <p className="font-medium text-center">
+                {data.numberofWashes || 0}
+              </p>
             </div>
-            <div>
+            <div className="text-[8px] lg:text-lg">
               <h2 className="font-medium text-center">Total Dry</h2>
-              <p className="font-medium text-center">{data.numberofDryers || 0}</p>
+              <p className="font-medium text-center">
+                {data.numberofDryers || 0}
+              </p>
             </div>
           </div>
         ))}

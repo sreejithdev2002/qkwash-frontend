@@ -38,11 +38,7 @@ function DeviceDetailsForm1({ devices }) {
             </div>
             <div className="my-5 mx-5">
               <h1 className="my-3 font-medium">Status</h1>
-              <span
-                className={`px-5 py-1 rounded-xl transition duration-300 ${
-                  data.status === "ready" ? "bg-[#69E08B]" : "bg-[#E54040]"
-                }`}
-              >
+              <span className="px-5 py-1 rounded-xl transition duration-300 bg-[#69E08B]">
                 {data.status.charAt(0).toUpperCase() +
                   data.status.slice(1).toLowerCase()}
               </span>

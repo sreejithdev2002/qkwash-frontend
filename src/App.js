@@ -15,11 +15,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import ServiceRequest from "./pages/ServiceRequest";
 import DeviceController from "./pages/DeviceController";
 import DeviceDetails from "./pages/DeviceDetails";
+import Loading from "./components/Loading/Loading";
 
 
 function App() {
+
+  // const openNewTab = () => {
+  //   window.open("//device-controller", "_blank");
+  // };
+
   return (
     <>
+    <Loading/>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />

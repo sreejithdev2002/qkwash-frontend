@@ -120,7 +120,7 @@ function PhoneNumberAndOtpLogin() {
             value={phone}
             onChange={handlePhoneChange}
             maxLength="10"
-            className="rounded-3xl w-[30vw] mx-1 px-4 font-light placeholder:text-[#817C7C] text-xl focus:outline-[#7AEC50]"
+            className="rounded-3xl w-[50vw] lg:w-[30vw] mx-1 px-4 font-light placeholder:text-[#817C7C] text-sm lg:text-xl focus:outline-[#7AEC50]"
             placeholder="Enter your mobile number"
             disabled={loading}
           />

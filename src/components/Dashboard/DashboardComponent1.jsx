@@ -24,11 +24,11 @@ function DashboardComponent1({ priceData }) {
       {priceDatas.map((data, index) => (
         <div
           key={index}
-          className={`${data.color} w-[40vw] rounded-xl mx-5 my-5 p-5 shadow-sm`}
+          className={`${data.color} lg:w-[40vw] rounded-xl mx-1 lg:mx-5 my-5 lg:p-5 p-3 shadow-sm`}
           id="barlowFont"
         >
-          <h1 className="font-medium text-[#464255]">{data.name}</h1>
-          <h2 className="text-4xl font-medium text-[#464255]">{data.number}</h2>
+          <h1 className="font-medium text-[#464255] text-xs">{data.name}</h1>
+          <h2 className="text-2xl lg:text-4xl font-medium text-[#464255]">{data.number}</h2>
         </div>
       ))}
     </div>
