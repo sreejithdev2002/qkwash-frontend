@@ -41,7 +41,7 @@ function App() {
           <Route path="/hublist/:hubId" element={<HubDetails />} />
           <Route path="/hublist/edit/:hubId" element={<EditHubDetails />} />
 
-          <Route path="/hublist/device-details/:deviceId" element={<DeviceDetails/>} />
+          <Route path="/hublist/device-details/:hubid/:deviceId" element={<DeviceDetails/>} />
 
           <Route path="/service-request" element={<ServiceRequest />} />
           <Route path="/device-controller" element={<DeviceController />} />

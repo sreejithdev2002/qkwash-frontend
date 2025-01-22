@@ -49,18 +49,18 @@ function EditHubDetailsForm({ hubData, setHubData }) {
 
   return (
     <div>
-      <h1 className="text-2xl mt-10 mb-2">Hub Details</h1>
-      <div className="flex">
+      <h1 className="text-lg lg:text-2xl mt-10 mb-2">Hub Details</h1>
+      <div className="flex flex-col lg:flex-row">
         <form>
           {hubFormData.map((data, index) => (
             <div
               key={index}
-              className="flex justify-between my-5 items-center mr-40"
+              className="flex justify-between my-5 items-center lg:mr-40"
             >
-              <label className="font-medium">{data.labelName}</label>
+              <label className="font-medium text-sm lg:text-base">{data.labelName}</label>
               <input
                 type={data.type}
-                className="bg-[#FDFDFD] rounded-lg ml-5 px-5 py-1 w-80"
+                className="bg-[#FDFDFD] rounded-lg ml-5 px-5 py-1 lg:w-80 w-[45vw] text-sm lg:text-base"
                 value={data.value}
                 onChange={(e) => handleChange(data.field, e.target.value)}
               />
@@ -69,11 +69,11 @@ function EditHubDetailsForm({ hubData, setHubData }) {
         </form>
         <div>
           <form>
-            <div className="flex justify-between my-5 items-center">
-              <label className="font-medium">Hub ID</label>
+            <div className="flex justify-between lg:my-5 items-center">
+              <label className="font-medium text-sm lg:text-base">Hub ID</label>
               <input
                 type="text"
-                className="bg-[#FDFDFD] rounded-lg ml-5 py-1 px-5 w-80 text-[#877C7C]"
+                className="bg-[#FDFDFD] rounded-lg ml-5 px-5 py-1 lg:w-80 w-[45vw] text-sm lg:text-base text-[#877C7C]"
                 value={hubData.hubId}
                 readOnly
               />

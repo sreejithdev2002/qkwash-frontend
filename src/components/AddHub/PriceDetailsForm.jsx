@@ -20,19 +20,19 @@ function PriceDetailsForm({ priceDetails, setPriceDetails }) {
   };
 
   return (
-    <div id="barlowFont" className="p-5">
-      <h1 className="text-2xl my-2">Price Details</h1>
+    <div id="barlowFont" className="mt-10 lg:mt-0 mb-10 lg:mb-5">
+      <h1 className="my-5 text-lg lg:text-2xl font-medium">Price Details</h1>
       <div className="flex p-5">
         <h1>Mode</h1>
-        <h1 className="ml-[175px]">Actual Price</h1>
-        <h1 className="ml-[55px]">Offer Price</h1>
+        <h1 className="ml-[90px] lg:ml-[175px] text-sm lg:text-base">Actual Price</h1>
+        <h1 className="ml-[40px] lg:ml-[55px] text-sm lg:text-base">Offer Price</h1>
       </div>
       {gridsForm.map((data) => (
         <div key={data.key} className="flex">
           <h1 className="w-[150px] mb-3 py-1 px-5">{data.name}</h1>
           <input
             type="text"
-            className="ml-16 mb-3 py-1 px-5 rounded-lg w-28"
+            className="lg:ml-16 mb-3 py-1 px-5 rounded-lg w-20 lg:w-28 font-medium text-center"
             value={priceDetails[data.key]?.actual || ""}
             onChange={(e) =>
               handleInputChange(data.key, "actual", e.target.value)
@@ -40,7 +40,7 @@ function PriceDetailsForm({ priceDetails, setPriceDetails }) {
           />
           <input
             type="text"
-            className="ml-7 mb-3 py-1 px-5 rounded-lg w-28"
+            className="lg:ml-7 ml-1 mb-3 py-1 px-5 rounded-lg w-20 lg:w-28 font-medium text-center"
             value={priceDetails[data.key]?.offer || ""}
             onChange={(e) =>
               handleInputChange(data.key, "offer", e.target.value)

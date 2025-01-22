@@ -108,9 +108,9 @@ function HubDetails() {
         <Header hide={"hidden"} />
         <HubDetailsHeader hubId={hubId}/>
         <HubDetailsForm1 hubData={hubData} />
-        <DeviceDetailsForm1 devices={deviceData} />
+        <DeviceDetailsForm1 devices={deviceData} hubid={hubId} />
         <PriceDetailsForm1 prices={priceData} />
-        <h1 className="text-2xl font-medium my-2" id="barlowFont">
+        <h1 className="text-lg lg:text-2xl font-medium my-2" id="barlowFont">
           Earnings
         </h1>
         <EarningsComponent hubid={hubId}/>

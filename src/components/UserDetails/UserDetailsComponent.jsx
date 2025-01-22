@@ -45,22 +45,22 @@ function UserDetailsComponent({ usermobile }) {
 
   return (
     <div id="barlowFont">
-      <h1 className="my-5 font-semibold text-2xl text-[#464255]">User List</h1>
+      <h1 className="my-5 font-semibold text-lg lg:text-2xl text-[#464255]">User Details</h1>
       {error ? (
         <p className="text-red-500">{error}</p>
       ) : filteredUser ? (
-        <div className="grid grid-cols-5 px-5 items-center">
+        <div className="grid lg:grid-cols-5 grid-cols-2 lg:px-5 items-center">
           <div>
-            <h1 className="font-medium text-[#464255] text-3xl">
+            <h1 className="font-medium text-[#464255] text-xl lg:text-3xl">
               {filteredUser.username.toUpperCase()}
             </h1>
-            <p className="font-medium text-[#A3A3A3] text-lg">
+            <p className="font-medium text-[#A3A3A3] lg:text-lg">
               #{filteredUser.userid}
             </p>
           </div>
           <div>
-            <h1 className="font-medium text-lg">Mobile Number</h1>
-            <p className="font-medium text-lg">{filteredUser.usermobile}</p>
+            <h1 className="font-medium lg:text-lg">Mobile Number</h1>
+            <p className="font-medium lg:text-lg">{filteredUser.usermobile}</p>
           </div>
         </div>
       ) : (

@@ -91,7 +91,7 @@ function Header({ hide }) {
         {loading && <p className="text-sm text-gray-500">Loading hubs...</p>}
         {!loading && filteredHubs.length > 0 && (
           <ul
-            className="bg-white border border-gray-300 rounded-md max-h-60 overflow-y-auto w-[30vw]"
+            className="bg-white border border-gray-300 rounded-md max-h-60 overflow-y-auto w-[55vw] lg:w-[30vw]"
             id="scrollbar"
           >
             {filteredHubs.map((hub) => (

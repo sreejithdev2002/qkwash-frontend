@@ -5,7 +5,7 @@ function AddHubComponent() {
     <div>
       <h1
         id="barlowFont"
-        className="my-5 font-semibold text-2xl text-[#464255]"
+        className="my-5 font-semibold text-lg lg:text-2xl text-[#464255]"
       >
         Add New Hub
       </h1>

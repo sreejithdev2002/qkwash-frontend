@@ -38,16 +38,16 @@ function HubDetailsHeader({ hubId }) {
 
   return (
     <div className="flex justify-between" id="barlowFont">
-      <h1 className="my-5 text-2xl font-medium">Hub Details</h1>
+      <h1 className="my-5 text-lg lg:text-2xl font-medium">Hub Details</h1>
       <div>
         <button
-          className="px-8 py-2 bg-[#E54040] my-5 rounded-md font-medium mr-2"
+          className="px-2 lg:px-8 py-2 text-xs bg-[#E54040] my-5 rounded-md font-medium mr-1 lg:mr-2"
           onClick={handleDelete}
         >
           DELETE
         </button>
         <button
-          className="px-8 py-2 bg-[#7AEC50] my-5 rounded-md font-medium ml-2"
+          className="px-2 lg:px-8 py-2 text-xs bg-[#7AEC50] my-5 rounded-md font-medium ml-1 lg:ml-2"
           onClick={handleEdit}
         >
           EDIT

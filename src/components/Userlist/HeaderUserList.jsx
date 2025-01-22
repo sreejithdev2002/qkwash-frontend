@@ -65,7 +65,7 @@ function Header({ hide }) {
         <div className="relative">
           <input
             type="text"
-            className="w-[55vw] lg:w-[30vw] rounded-md px-2 lg:px-5 py-2 text-sm lg:text-base"
+            className="w-[60vw] lg:w-[30vw] rounded-md px-2 lg:px-5 py-2 text-sm lg:text-base"
             placeholder="Search here User id/User Name"
             id="barlowFont"
             value={searchTerm}

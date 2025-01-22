@@ -26,17 +26,17 @@ function DeviceDetailsForm({ deviceForms, setDeviceForms }) {
   };
 
   return (
-    <div id="barlowFont" className="p-5">
-      <h1 className="text-2xl my-2">Device Details</h1>
+    <div id="barlowFont">
+      <h1 className="text-lg lg:text-2xl my-2">Device Details</h1>
       <div>
         {deviceForms.map((data, index) => (
           <div key={index} className="my-5">
             <div className="flex items-center">
-              <h1 className="font-medium mr-10">Type of Device</h1>
+              <h1 className="font-medium text-sm lg:text-base text-nowrap lg:mr-10">Type of Device</h1>
               <button
                 onClick={() => handleOptionClick(index, "Washer")}
                 required
-                className={`px-5 py-1 rounded-xl mx-5 transition duration-300 ${
+                className={`px-5 py-1 rounded-xl lg:mx-5 ml-5 transition duration-300 ${
                   data.deviceType === "Washer"
                     ? "bg-[#69E08B]"
                     : "bg-white text-black hover:bg-gray-200"
@@ -47,7 +47,7 @@ function DeviceDetailsForm({ deviceForms, setDeviceForms }) {
               <button
                 onClick={() => handleOptionClick(index, "Dryer")}
                 required
-                className={`px-5 py-1 rounded-xl mx-5 transition duration-300 ${
+                className={`px-5 py-1 rounded-xl lg:mx-5 ml-3 transition duration-300 ${
                   data.deviceType === "Dryer"
                     ? "bg-[#69E08B]"
                     : "bg-white text-black hover:bg-gray-200"
@@ -57,12 +57,12 @@ function DeviceDetailsForm({ deviceForms, setDeviceForms }) {
               </button>
             </div>
             <div className="flex my-5">
-              <h1 className="font-medium mr-24">Device ID</h1>
+              <h1 className="font-medium lg:mr-24 mr-12 text-sm lg:text-base text-nowrap">Device ID</h1>
               <input
                 type="text"
                 value={data.deviceid}
                 onChange={(e) => handleInputChange(index, e.target.value)}
-                className="rounded-lg py-1 px-5"
+                className="rounded-lg py-1 px-5 w-40"
                 placeholder="Enter Device ID"
                 required
               />
