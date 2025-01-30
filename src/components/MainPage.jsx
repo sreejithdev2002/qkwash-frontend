@@ -39,8 +39,6 @@ function MainPage() {
         };
         setHubData(hubs);
         setPriceData(prices);
-        console.log(hubData, priceData);
-        console.log(response.data.data.workingDevices);
       } else {
         console.log("Error fetching data");
       }

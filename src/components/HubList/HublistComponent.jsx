@@ -21,7 +21,6 @@ function HublistComponent() {
       );
       if (response.status === 200) {
         setHubList(response.data.data);
-        console.log(response.data.data);
       } else {
         setError("Failed to fetch data. Please try again.", error);
       }
@@ -43,6 +42,7 @@ function HublistComponent() {
       <div className="overflow-auto h-[80vh] pr-5" id="scrollbar">
         {hubList.map((data) => (
           <div
+          key={data.hubid}
             className="font-medium bg-[#D9D9D9] hover:bg-[#d1d1d1] flex justify-between px-2 lg:px-10 py-2 lg:py-5 my-2 lg:my-5 text-center rounded-lg lg:rounded-2xl cursor-pointer transition-all duration-300"
             onClick={() => navigate(`/hublist/${data.hubid}`)}
           >

@@ -63,7 +63,7 @@ function DetailsComponent() {
   useEffect(() => {
     fetchPriceData();
     fetchTableData();
-  }, [deviceId]);
+  });
 
   return (
     <div id="barlowFont">
@@ -146,7 +146,7 @@ function DetailsComponent() {
           <p>{priceData?.lastMonthCount || 0}</p>
         </div>
       </div>
-      <div className="overflow-auto h-[60vh] mt-10" id="scrollbar">
+      <div className="overflow-auto h-[60vh] mt-10" id="sc">
         <table id="montserratFont" className="w-[75vw] mt-5">
           <thead className="sticky top-0 z-10 bg-[#89F3FF]">
             <tr>
@@ -170,21 +170,21 @@ function DetailsComponent() {
           <tbody>
             {deviceTable.map((data) => (
               <tr className="text-center hover:bg-black hover:text-[#89F3FF] transition-colors duration-200">
-                <td className="p-3 lg:p-5 font-medium text-sm lg:text-2xltext-lg">
+                <td className="p-3 lg:p-5 font-medium text-sm lg:text-lg">
                   {new Date(
                     data.device_booked_user_end_time
                   ).toLocaleDateString("en-GB")}
                 </td>
-                <td className="p-3 lg:p-5 font-medium text-sm lg:text-2xltext-lg">
+                <td className="p-3 lg:p-5 font-medium text-sm lg:text-lg">
                   {data.device_booked_user_mobile_no}
                 </td>
-                <td className="p-3 lg:p-5 font-medium text-sm lg:text-2xltext-lg">
+                <td className="p-3 lg:p-5 font-medium text-sm lg:text-lg">
                   {deviceId}
                 </td>
-                <td className="p-3 lg:p-5 font-medium text-sm lg:text-2xltext-lg">
+                <td className="p-3 lg:p-5 font-medium text-sm lg:text-lg">
                   {data.booked_user_selected_wash_mode}
                 </td>
-                <td className="p-3 lg:p-5 font-medium text-sm lg:text-2xltext-lg">
+                <td className="p-3 lg:p-5 font-medium text-sm lg:text-lg">
                   {data.booked_user_amount}
                 </td>
               </tr>

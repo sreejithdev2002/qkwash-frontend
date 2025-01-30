@@ -32,7 +32,7 @@ function History({ hubid }) {
 
   useEffect(() => {
     fetchData();
-  }, [hubid]);
+  });
 
   return (
     <div className="overflow-auto h-[60vh]">
@@ -57,8 +57,8 @@ function History({ hubid }) {
           </tr>
         </thead>
         <tbody>
-          {history.map((data) => (
-            <tr className="text-center hover:bg-black hover:text-[#89F3FF] transition-colors duration-200">
+          {history.map((data, index) => (
+            <tr key={index} className="text-center hover:bg-black hover:text-[#89F3FF] transition-colors duration-200">
               <td className="p-3 lg:p-5 font-medium text-sm lg:text-lg">
                 {new Date(data.device_booked_user_end_time).toLocaleDateString(
                   "en-GB"

@@ -38,7 +38,7 @@ function UserlistComponent() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   const navigate = useNavigate();
 

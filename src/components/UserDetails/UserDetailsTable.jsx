@@ -2,7 +2,7 @@ import React from "react";
 
 function UserDetailsTable({ userDetailsComponent }) {
   return (
-    <div className="overflow-auto">
+    <div className="overflow-auto h-[70vh] mt-5" id="scrollbar">
       <table id="montserratFont" className="w-[75vw] mt-5">
         <thead>
           <tr>
